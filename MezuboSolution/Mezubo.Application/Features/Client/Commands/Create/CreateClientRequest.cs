@@ -1,7 +1,7 @@
 ﻿namespace Mezubo.Application.Features.Client.Commands.Create
 {
-    using MediatR;
     using ErrorOr;
+    using MediatR;
     using Mezubo.Domain.ModelServices;
 
     /// <summary>

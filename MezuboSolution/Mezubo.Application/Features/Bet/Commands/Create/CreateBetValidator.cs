@@ -2,7 +2,7 @@
 {
     using FluentValidation;
 
-    public class CreateBetValidator: AbstractValidator<CreateBetRequest>
+    public class CreateBetValidator : AbstractValidator<CreateBetRequest>
     {
     }
 }

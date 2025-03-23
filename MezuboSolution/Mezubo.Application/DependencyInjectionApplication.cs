@@ -10,7 +10,7 @@
         public static WebApplicationBuilder AddApplication(this WebApplicationBuilder builder)
         {
             builder.Services.AddCoreApplication<Main>();
-           // builder.Services.AddValidatorsFromAssemblyContaining<SearchListRiskValidator>();
+            // builder.Services.AddValidatorsFromAssemblyContaining<SearchListRiskValidator>();
 
             return builder;
         }

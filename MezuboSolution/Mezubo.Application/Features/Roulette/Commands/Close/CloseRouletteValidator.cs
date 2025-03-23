@@ -2,7 +2,7 @@
 {
     using FluentValidation;
 
-    public class CloseRouletteValidator: AbstractValidator<CloseRouletteRequest>
+    public class CloseRouletteValidator : AbstractValidator<CloseRouletteRequest>
     {
     }
 }

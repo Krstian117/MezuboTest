@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Sistran.DataAccess" Version="2.1.1" />
     <PackageReference Include="Sistran.Extensions.Core" Version="1.1.1" />
   </ItemGroup>

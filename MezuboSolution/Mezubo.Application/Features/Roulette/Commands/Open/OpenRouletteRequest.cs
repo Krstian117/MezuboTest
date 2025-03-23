@@ -6,7 +6,7 @@
     /// <summary>
     /// Clase utilizada para el proceso de abrir una ruleta
     /// </summary>
-    public class OpenRouletteRequest: IRequest<ErrorOr<OpenRouletteResponse>>
+    public class OpenRouletteRequest : IRequest<ErrorOr<OpenRouletteResponse>>
     {
     }
 }

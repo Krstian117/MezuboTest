@@ -5,8 +5,6 @@
     using Mezubo.Domain.Persistence;
     using Mezubo.Domain.Resources;
     using Sistran.DataAccess.SqlBuilder;
-    using Sistran.Extensions.Instrumentation.Enums;
-    using System.Data;
     using System.Threading.Tasks;
 
     internal class ClientRepository : IClientRepository
@@ -63,7 +61,5 @@
                 });
             }
         }
-
-
     }
 }

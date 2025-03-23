@@ -3,7 +3,7 @@
     using ErrorOr;
     using MediatR;
 
-    public class CreateBetRequest: IRequest<ErrorOr<CreateBetResponse>>
+    public class CreateBetRequest : IRequest<ErrorOr<CreateBetResponse>>
     {
     }
 }

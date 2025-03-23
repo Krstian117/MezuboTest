@@ -6,7 +6,7 @@
     /// <summary>
     /// Clase utilizada para el proceso de cerrar una ruleta
     /// </summary>
-    public class CloseRouletteRequest: IRequest<ErrorOr<CloseRouletteResponse>>
+    public class CloseRouletteRequest : IRequest<ErrorOr<CloseRouletteResponse>>
     {
     }
 }

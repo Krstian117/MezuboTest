@@ -6,7 +6,7 @@
     /// <summary>
     /// Clase utilizada para el proceso de crear una ruleta
     /// </summary>
-    public class CreateRouletteRequest: IRequest<ErrorOr<CreateRouletteResponse>>
+    public class CreateRouletteRequest : IRequest<ErrorOr<CreateRouletteResponse>>
     {
     }
 }

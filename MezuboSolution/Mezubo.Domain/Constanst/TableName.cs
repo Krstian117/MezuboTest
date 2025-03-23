@@ -1,4 +1,4 @@
-﻿namespace Sistran.Shared.Components.Constants
+﻿namespace Mezubo.Domain.Constanst
 {
     /// <summary>
     /// tablas

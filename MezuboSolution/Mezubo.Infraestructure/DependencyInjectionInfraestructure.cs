@@ -21,6 +21,7 @@
                 opt.UseMSSqlServer<AdoNet, DataProcessingMezubo>(context);
             });
             builder.Services.AddScoped<IClientRepository, ClientRepository>();
+            builder.Services.AddScoped<IRouletteRepository, RouletteRepository>();
             return builder;
         }
     }
