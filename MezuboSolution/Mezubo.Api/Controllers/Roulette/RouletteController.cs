@@ -6,6 +6,7 @@ namespace Mezubo.Api.Controllers.Roulette
     using MediatR;
     using Mezubo.Api.Controllers.Base;
     using Mezubo.Application.Features.Roulette.Commands.Create;
+    using Mezubo.Application.Features.Roulette.Commands.Open;
     using Mezubo.Domain.Resources;
     using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +42,51 @@ namespace Mezubo.Api.Controllers.Roulette
                                           .ToList();
 
                     if (failureErrors.Count > 0)
+                    {
+                        error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Failure).Select(x => x.Description));
+                        return this.Ok(error);
+                    }
+                    return this.Problem(Messages.InternalError);
+                }
+                return this.Ok(response.Value);
+            }
+            catch (Exception ex)
+            {
+                return this.Problem(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Metodo encargado de abrir ruletas
+        /// </summary>
+        /// <returns><see cref="OpenRouletteResponse"/></returns>
+        [HttpPost("OpenRoulette")]
+        [ProducesResponseType(typeof(OpenRouletteResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesErrorResponseType(typeof(string))]
+        public async Task<IActionResult> OpenRoulette(OpenRouletteRequest request)
+        {
+            try
+            {
+                ErrorOr<OpenRouletteResponse> response = await this._sender.Send(request);
+                if (response.IsError)
+                {
+                    string error = string.Empty;
+                    List<string> validationErrors = response.Errors
+                                           .Where(x => x.Type == ErrorType.Validation)
+                                           .Select(x => x.Description)
+                                           .ToList();
+                    List<string> failureErrors = response.Errors
+                                          .Where(x => x.Type == ErrorType.Failure)
+                                          .Select(x => x.Description)
+                                          .ToList();
+
+                    if (validationErrors.Count > 0)
+                    {
+                        error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Validation).Select(x => x.Description));
+                        return this.BadRequest(error);
+                    }
+                    else if (failureErrors.Count > 0)
                     {
                         error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Failure).Select(x => x.Description));
                         return this.Ok(error);

@@ -120,6 +120,9 @@
   <data name="Client" xml:space="preserve">
     <value>Cliente</value>
   </data>
+  <data name="DontExistRoulette" xml:space="preserve">
+    <value>No se encontro ruleta asociada al Id {0}</value>
+  </data>
   <data name="ExistClient" xml:space="preserve">
     <value>El cliente {0}, ya se encuentra registrado en el sistema</value>
   </data>
@@ -129,10 +132,19 @@
   <data name="MaxlenghtField" xml:space="preserve">
     <value>El campo {0}, permite hasta {1} carácteres</value>
   </data>
+  <data name="NumberGreaterThan" xml:space="preserve">
+    <value>El campo {0}, debe ser mayor a {1}</value>
+  </data>
   <data name="RequiredField" xml:space="preserve">
     <value>El campo {0} es obligatorio</value>
   </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>Ruleta</value>
+  </data>
   <data name="SuccessCreation" xml:space="preserve">
     <value>{0} Cread{1} correctamente</value>
+  </data>
+  <data name="SuccessUpdateRoulette" xml:space="preserve">
+    <value>Ruleta de Id {0}, {1} correctamente</value>
   </data>
 </root>

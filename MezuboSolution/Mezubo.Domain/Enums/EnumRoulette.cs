@@ -2,6 +2,7 @@
 {
     public enum EnumRoulette
     {
+        CREATE,
         OPEN,
         CLOSE
     }

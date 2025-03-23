@@ -70,6 +70,15 @@ namespace Mezubo.Domain.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se encontro ruleta asociada al Id {0}.
+        /// </summary>
+        public static string DontExistRoulette {
+            get {
+                return ResourceManager.GetString("DontExistRoulette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El cliente {0}, ya se encuentra registrado en el sistema.
         /// </summary>
         public static string ExistClient {
@@ -97,6 +106,15 @@ namespace Mezubo.Domain.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El campo {0}, debe ser mayor a {1}.
+        /// </summary>
+        public static string NumberGreaterThan {
+            get {
+                return ResourceManager.GetString("NumberGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El campo {0} es obligatorio.
         /// </summary>
         public static string RequiredField {
@@ -106,11 +124,29 @@ namespace Mezubo.Domain.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ruleta.
+        /// </summary>
+        public static string Roulette {
+            get {
+                return ResourceManager.GetString("Roulette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a {0} Cread{1} correctamente.
         /// </summary>
         public static string SuccessCreation {
             get {
                 return ResourceManager.GetString("SuccessCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ruleta de Id {0}, {1} correctamente.
+        /// </summary>
+        public static string SuccessUpdateRoulette {
+            get {
+                return ResourceManager.GetString("SuccessUpdateRoulette", resourceCulture);
             }
         }
     }

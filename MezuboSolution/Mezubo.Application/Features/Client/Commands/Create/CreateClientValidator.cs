@@ -12,7 +12,6 @@
                 .WithMessage(string.Format(Messages.RequiredField, nameof(CreateClientRequest.Name)))
                 .MaximumLength(200)
                 .WithMessage(string.Format(Messages.MaxlenghtField, nameof(CreateClientRequest.Name), 200));
-
         }
     }
 }
