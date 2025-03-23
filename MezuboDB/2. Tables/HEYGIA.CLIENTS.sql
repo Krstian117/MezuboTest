@@ -1,0 +1,41 @@
+--///////////////////////////////////////////////////////
+--AUTOR:
+-- Cristian Gonzalez
+--FECHA: 
+-- 22/03/2025
+--FUNCION:
+-- Almacenar clientes y asignar valor por defecto
+--///////////////////////////////////////////////////////
+PRINT 'CLIENTS'
+GO
+
+IF OBJECT_ID('HEYGIA.CLIENTS') IS NOT NULL
+BEGIN
+	DROP TABLE HEYGIA.CLIENTS
+
+	IF OBJECT_ID('HEYGIA.CLIENTS') IS NOT NULL
+		PRINT '<<< FAILED DROPPING TABLE HEYGIA.CLIENTS >>>'
+	ELSE
+		PRINT '<<< DROPPED TABLE HEYGIA.CLIENTS >>>'
+END
+GO
+
+CREATE TABLE HEYGIA.CLIENTS (
+    ClientId INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Balance DECIMAL(10,2) NOT NULL DEFAULT 10000.00 -- Crédito inicial
+)
+
+GO
+
+IF OBJECT_ID('HEYGIA.CLIENTS') IS NOT NULL
+	PRINT '<<< CREATED TABLE HEYGIA.CLIENTS  >>>'
+ELSE
+	PRINT '<<< FAILED CREATING TABLE HEYGIA.CLIENTS >>>'
+GO
+
+IF @@ERROR != 0
+	SELECT '*** ERROR en Script ***'
+ELSE
+	SELECT 'Finalizo OK ' + RTRIM(CAST(GETDATE() AS NVARCHAR(30)))
+GO

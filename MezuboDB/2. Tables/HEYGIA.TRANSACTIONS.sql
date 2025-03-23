@@ -1,0 +1,43 @@
+--///////////////////////////////////////////////////////
+--AUTOR:
+-- Cristian Gonzalez
+--FECHA: 
+-- 22/03/2025
+--FUNCION:
+-- Gestion de Transacciones
+--///////////////////////////////////////////////////////
+PRINT 'BETS'
+GO
+
+IF OBJECT_ID('HEYGIA.TRANSACTIONS') IS NOT NULL
+BEGIN
+	DROP TABLE HEYGIA.TRANSACTIONS
+
+	IF OBJECT_ID('HEYGIA.TRANSACTIONS') IS NOT NULL
+		PRINT '<<< FAILED DROPPING TABLE HEYGIA.TRANSACTIONS >>>'
+	ELSE
+		PRINT '<<< DROPPED TABLE HEYGIA.TRANSACTIONS >>>'
+END
+GO
+CREATE TABLE HEYGIA.TRANSACTIONS (
+    TransactionId INT IDENTITY(1,1) PRIMARY KEY,
+    ClientId INT NOT NULL,
+    RouletteId INT NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL, -- Positivo si es ingreso, negativo si es retiro
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (ClientId) REFERENCES HEYGIA.CLIENTS(ClientId)
+);
+
+GO
+
+IF OBJECT_ID('HEYGIA.TRANSACTIONS') IS NOT NULL
+	PRINT '<<< CREATED TABLE HEYGIA.TRANSACTIONS  >>>'
+ELSE
+	PRINT '<<< FAILED CREATING TABLE HEYGIA.TRANSACTIONS >>>'
+GO
+
+IF @@ERROR != 0
+	SELECT '*** ERROR en Script ***'
+ELSE
+	SELECT 'Finalizo OK ' + RTRIM(CAST(GETDATE() AS NVARCHAR(30)))
+GO

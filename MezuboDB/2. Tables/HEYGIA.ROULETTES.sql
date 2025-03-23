@@ -1,0 +1,44 @@
+--///////////////////////////////////////////////////////
+--AUTOR:
+-- Cristian Gonzalez
+--FECHA: 
+-- 22/03/2025
+--FUNCION:
+-- Gestion de ruletas
+--///////////////////////////////////////////////////////
+PRINT 'ROULETTES'
+GO
+
+IF OBJECT_ID('HEYGIA.ROULETTES') IS NOT NULL
+BEGIN
+	DROP TABLE HEYGIA.ROULETTES
+
+	IF OBJECT_ID('HEYGIA.ROULETTES') IS NOT NULL
+		PRINT '<<< FAILED DROPPING TABLE HEYGIA.ROULETTES >>>'
+	ELSE
+		PRINT '<<< DROPPED TABLE HEYGIA.ROULETTES >>>'
+END
+GO
+CREATE TABLE HEYGIA.ROULETTES (
+    RouletteId INT IDENTITY(1,1) PRIMARY KEY,
+    Status VARCHAR(10) NOT NULL,
+    CreatedAt DATETIME NOT NULL,
+    OpenedAt DATETIME NULL,
+    ClosedAt DATETIME NULL,
+    WinningNumber INT NULL,
+    WinningColor VARCHAR(5) NULL
+);
+
+GO
+
+IF OBJECT_ID('HEYGIA.ROULETTES') IS NOT NULL
+	PRINT '<<< CREATED TABLE HEYGIA.ROULETTES  >>>'
+ELSE
+	PRINT '<<< FAILED CREATING TABLE HEYGIA.ROULETTES >>>'
+GO
+
+IF @@ERROR != 0
+	SELECT '*** ERROR en Script ***'
+ELSE
+	SELECT 'Finalizo OK ' + RTRIM(CAST(GETDATE() AS NVARCHAR(30)))
+GO
