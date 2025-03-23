@@ -6,6 +6,7 @@ namespace Mezubo.Api.Controllers.Client
     using MediatR;
     using Mezubo.Api.Controllers.Base;
     using Mezubo.Application.Features.Client.Commands.Create;
+    using Mezubo.Domain.Resources;
     using Microsoft.AspNetCore.Mvc;
 
     public class ClientController : BaseController
@@ -19,7 +20,7 @@ namespace Mezubo.Api.Controllers.Client
         /// <summary>
         /// Metodo encargado de recibir el Json de Creación de cliente
         /// </summary>
-        /// <param name="client"></param>
+        /// <param name="request"></param>
         /// <returns><see cref="CreateClientResponse"/></returns>
         [HttpPost("CreateClient")]
         [ProducesResponseType(typeof(CreateClientResponse), StatusCodes.Status200OK)]
@@ -33,12 +34,28 @@ namespace Mezubo.Api.Controllers.Client
                 ErrorOr<CreateClientResponse> response = await this._sender.Send(request);
                 if (response.IsError)
                 {
-                    if (response.Errors.Any(x => x.Type == ErrorType.Validation))
+                    string error = string.Empty;
+                    List<string> validationErrors = response.Errors
+                                           .Where(x => x.Type == ErrorType.Validation)
+                                           .Select(x => x.Description)
+                                           .ToList();
+
+                    List<string> failureErrors = response.Errors
+                                          .Where(x => x.Type == ErrorType.Failure)
+                                          .Select(x => x.Description)
+                                          .ToList();
+
+                    if (validationErrors.Count > 0)
                     {
-                        string error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Validation).Select(x => x.Description));
+                        error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Validation).Select(x => x.Description));
                         return this.BadRequest(error);
                     }
-                    return this.BadRequest(string.Join(", ", response.Errors.Select(z => z.Description)));
+                    else if (failureErrors.Count > 0)
+                    {
+                        error = string.Join(", ", response.Errors.Where(x => x.Type == ErrorType.Failure).Select(x => x.Description));
+                        return this.Ok(error);
+                    }
+                    return this.Problem(Messages.InternalError);
                 }
                 return this.Ok(response.Value);
             }

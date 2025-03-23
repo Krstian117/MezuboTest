@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Mezubo.Application\Mezubo.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

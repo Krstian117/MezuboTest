@@ -1,4 +1,9 @@
-var builder = WebApplication.CreateBuilder(args);
+
+using Mezubo.Application;
+using Mezubo.Infraestructure;
+using Sistran.Presentation.Api.Extensions;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -6,20 +11,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApiSwagger(builder.Configuration);
+builder.AddApplication()
+       .AddInfrastructure();
+WebApplication app = builder.Build();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
+app.UseOpenApiSwagger();
 
-app.UseAuthorization();
+if (builder.Configuration.GetValue<bool>("Authentication:Enabled"))
+    app.MapControllers().RequireAuthorization();
+else
+    app.MapControllers();
 
-app.MapControllers();
 
 app.Run();

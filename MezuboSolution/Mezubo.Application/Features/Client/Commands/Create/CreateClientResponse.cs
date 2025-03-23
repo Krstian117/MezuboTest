@@ -2,5 +2,6 @@
 {
     public class CreateClientResponse
     {
+        public string Message { get; set; }
     }
 }
