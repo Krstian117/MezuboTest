@@ -13,8 +13,4 @@
     <ProjectReference Include="..\Mezubo.Infraestructure\Mezubo.Infraestructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
