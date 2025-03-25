@@ -95,5 +95,29 @@
                 });
             }
         }
+
+        public async Task<ErrorOr<RouletteEntity>> GetRoulette(int RouletteId)
+        {
+            try
+            {
+                using IDbContext db = this._dbContext.Open();
+                RouletteEntity result = null;
+                IQuery query = db.From<RouletteEntity>()
+                    .Where(x => x.Id == RouletteId);
+                result = (await db.QueryAsync<RouletteEntity>(query)).FirstOrDefault();
+                if (result != null)
+                {
+                    return result;
+                }
+                return Error.Failure(nameof(ValidateExistRoulette), string.Format(Messages.DontExistRoulette, RouletteId));
+            }
+            catch (Exception ex)
+            {
+                return Error.Unexpected(nameof(GetRoulette), ex.Message, new Dictionary<string, object>
+                {
+                     { nameof(Exception), ex}
+                });
+            }
+        }
     }
 }

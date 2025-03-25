@@ -20,7 +20,7 @@ namespace Mezubo.Api.Controllers.Bet
         }
 
         /// <summary>
-        /// Metodo encargado de recibir el Json de Creación de cliente
+        /// Metodo encargado de recibir el Json de Creación de apuesta
         /// </summary>
         /// <param name="UserId"></param>
         /// <param name="bet"></param>

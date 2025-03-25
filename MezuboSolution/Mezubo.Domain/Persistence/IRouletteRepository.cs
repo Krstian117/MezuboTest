@@ -1,6 +1,7 @@
 ﻿namespace Mezubo.Domain.Persistence
 {
     using ErrorOr;
+    using Mezubo.Domain.Entities;
     using Mezubo.Domain.Enums;
     using System.Threading.Tasks;
 
@@ -27,5 +28,12 @@
         /// <param name="enumRoulette"></param>
         /// <returns></returns>
         public Task<ErrorOr<Success>> UpdateRoulette(int RouletteId, EnumRoulette enumRoulette);
+
+        /// <summary>
+        /// Metodo encargado de recuperar ruleta
+        /// </summary>
+        /// <param name="RouletteId"></param>
+        /// <returns></returns>
+        public Task<ErrorOr<RouletteEntity>> GetRoulette(int RouletteId);
     }
 }

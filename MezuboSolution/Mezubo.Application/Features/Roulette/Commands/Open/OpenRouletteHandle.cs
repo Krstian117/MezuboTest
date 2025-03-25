@@ -2,6 +2,7 @@
 {
     using ErrorOr;
     using MediatR;
+    using Mezubo.Domain.Entities;
     using Mezubo.Domain.Enums;
     using Mezubo.Domain.Persistence;
     using Mezubo.Domain.Resources;
@@ -26,12 +27,36 @@
                 if (existRoulette.IsError) errors.AddRange(existRoulette.Errors);
                 else
                 {
-                    ErrorOr<Success> updateRoulette = await this._rouletteRepository.UpdateRoulette(request.RouletteId, EnumRoulette.OPEN);
-                    if (updateRoulette.IsError) errors.AddRange(updateRoulette.Errors);
+                    ErrorOr<RouletteEntity> getRoulette = await this._rouletteRepository.GetRoulette(request.RouletteId);
+                    if (getRoulette.IsError) errors.AddRange(getRoulette.Errors);
                     else
                     {
-                        response.Id = request.RouletteId;
-                        response.Message = string.Format(Messages.SuccessUpdateRoulette, request.RouletteId, "Abierta");
+                        string status = string.Empty;
+                        switch (getRoulette.Value.Status)
+                        {
+                            case "OPEN":
+                                status = "Abierta";
+                                break;
+                            case "CLOSE":
+                                status = "Cerrada";
+                                break;
+                        };
+                        if (string.IsNullOrEmpty(status))
+                        {
+                            ErrorOr<Success> updateRoulette = await this._rouletteRepository.UpdateRoulette(request.RouletteId, EnumRoulette.OPEN);
+                            if (updateRoulette.IsError) errors.AddRange(updateRoulette.Errors);
+                            else
+                            {
+                                response.Id = request.RouletteId;
+                                response.Message = string.Format(Messages.SuccessUpdateRoulette, request.RouletteId, "Abierta");
+                            }
+                        }
+                        else
+                        {
+                            Error error = Error.Failure(nameof(Handle), "No es posible abrir la ruleta de Id " + request.RouletteId + " Se encuentra " + status);
+                            errors.Add(error);
+                        }
+
                     }
                 }
                 if (errors.Count > 0)

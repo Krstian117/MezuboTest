@@ -8,5 +8,6 @@
     /// </summary>
     public class CloseRouletteRequest : IRequest<ErrorOr<CloseRouletteResponse>>
     {
+        public int RouletteId { get; set; }
     }
 }
