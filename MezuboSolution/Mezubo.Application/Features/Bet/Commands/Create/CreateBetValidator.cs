@@ -10,7 +10,7 @@
     public class CreateBetValidator : AbstractValidator<CreateBetRequest>
     {
         private readonly decimal _maxValueToBet;
-        
+
         public CreateBetValidator(IConfiguration configuration)
         {
             this._maxValueToBet = configuration.GetValue<decimal>("AppKeys:maxValueToBet");
@@ -53,7 +53,7 @@
                 .WithMessage(string.Format(Messages.RequiredField, nameof(CreateBetRequest.Amount)))
                 .GreaterThan(0)
                 .WithMessage(string.Format(Messages.NumberGreaterThan, nameof(CreateBetRequest.Amount), 0))
-                .LessThanOrEqualTo(this._maxValueToBet).WithMessage("El valor máximo permitido es "+this._maxValueToBet);
+                .LessThanOrEqualTo(this._maxValueToBet).WithMessage("El valor máximo permitido es " + this._maxValueToBet);
         }
     }
 }

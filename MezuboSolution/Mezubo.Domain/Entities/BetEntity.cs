@@ -1,7 +1,6 @@
 ﻿namespace Mezubo.Domain.Entities
 {
     using Mezubo.Domain.Constanst;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Sistran.DataAccess.SqlBuilder;
     using System.ComponentModel.DataAnnotations.Schema;
 

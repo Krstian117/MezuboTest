@@ -5,7 +5,6 @@ namespace Mezubo.Api.Controllers.Bet
     using ErrorOr;
     using MediatR;
     using Mezubo.Api.Controllers.Base;
-    using Mezubo.Application.Features.Client.Commands.Create;
     using Mezubo.Domain.ModelServices.Bet;
     using Mezubo.Domain.Resources;
     using Microsoft.AspNetCore.Mvc;
