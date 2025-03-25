@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BetExist" xml:space="preserve">
+    <value>Esta apuesta ya fue realizada anteriormente</value>
+  </data>
   <data name="Client" xml:space="preserve">
     <value>Cliente</value>
   </data>
+  <data name="DontExistClient" xml:space="preserve">
+    <value>No se encontro cliente asociado al Id {0}</value>
+  </data>
   <data name="DontExistRoulette" xml:space="preserve">
     <value>No se encontro ruleta asociada al Id {0}</value>
+  </data>
+  <data name="ErrorRegularExpression" xml:space="preserve">
+    <value>Error, el campo {0}, unicamente permite valores ({1}).</value>
   </data>
   <data name="ExistClient" xml:space="preserve">
     <value>El cliente {0}, ya se encuentra registrado en el sistema</value>

@@ -61,5 +61,30 @@
                 });
             }
         }
+
+        public async Task<ErrorOr<Success>> ValidateExistClient(int Id)
+        {
+            try
+            {
+                using IDbContext db = this._dbContext.Open();
+                int? result = null;
+                IQuery query = db.From<ClientEntity>()
+                    .Where(x => x.Id == Id)
+                    .Select(x => x.Id);
+                result = (await db.QueryAsync<int>(query)).FirstOrDefault();
+                if (result != null)
+                {
+                    return Result.Success;//El cliente si existe
+                }
+                return Error.Failure(nameof(ValidateExistClient), string.Format(Messages.DontExistClient, Id));
+            }
+            catch (Exception ex)
+            {
+                return Error.Unexpected(nameof(ValidateExistClient), ex.Message, new Dictionary<string, object>
+                {
+                     { nameof(Exception), ex}
+                });
+            }
+        }
     }
 }

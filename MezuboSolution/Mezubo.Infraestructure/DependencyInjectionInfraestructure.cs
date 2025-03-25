@@ -22,6 +22,7 @@
             });
             builder.Services.AddScoped<IClientRepository, ClientRepository>();
             builder.Services.AddScoped<IRouletteRepository, RouletteRepository>();
+            builder.Services.AddScoped<IBetRepository, BetRepository>();
             return builder;
         }
     }

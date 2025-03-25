@@ -10,6 +10,11 @@
     public class ClientEntity : IEntity
     {
         /// <summary>
+        /// Id
+        /// </summary>
+        [Column("ClientId")]
+        public int Id { get; set; }
+        /// <summary>
         /// Nombre
         /// </summary>
         [Column("Name")]

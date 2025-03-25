@@ -9,7 +9,7 @@
 PRINT 'BETS'
 GO
 
-IF OBJECT_ID('HEYGIA.TRANSACTIONS') IS NOT NULL
+IF OBJECT_ID('HEYGIA.BETS') IS NOT NULL
 BEGIN
 	DROP TABLE HEYGIA.BETS
 
@@ -19,14 +19,16 @@ BEGIN
 		PRINT '<<< DROPPED TABLE HEYGIA.BETS >>>'
 END
 GO
-CREATE TABLE Transactions (
-    TransactionId INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT NOT NULL,
-    RouletteId INT NULL, -- Puede ser NULL si no está relacionada con una ruleta
-    Amount DECIMAL(10,2) NOT NULL, -- Positivo si es ingreso, negativo si es retiro
-    TransactionType VARCHAR(10) NOT NULL, -- 'Bet', 'Payout' o 'Deposit'
+CREATE TABLE HEYGIA.BETS (
+    BetId INT IDENTITY(1,1) PRIMARY KEY,
+    ClientId INT NOT NULL,
+    RouletteId INT NOT NULL,
+	BetType VARCHAR(10) NOT NULL, 
+    BetValue VARCHAR(10) NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+	Status VARCHAR(10) NOT NULL DEFAULT 'PENDING', -- 'Pending', 'Won', 'Lost'
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+    FOREIGN KEY (ClientId) REFERENCES HEYGIA.CLIENTS(ClientId)
 );
 
 GO

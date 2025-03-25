@@ -1,6 +1,8 @@
 ﻿namespace Mezubo.Application
 {
+    using Mezubo.Domain.Mapper;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.DependencyInjection;
     using Sistran.Extensions.Core.Application;
 
     public static class DependencyInjectionApplication
@@ -10,7 +12,7 @@
         public static WebApplicationBuilder AddApplication(this WebApplicationBuilder builder)
         {
             builder.Services.AddCoreApplication<Main>();
-            // builder.Services.AddValidatorsFromAssemblyContaining<SearchListRiskValidator>();
+            builder.Services.AddAutoMapper(typeof(MezuboProfile).Assembly);
 
             return builder;
         }

@@ -1,4 +1,4 @@
-﻿namespace Mezubo.Domain.ModelServices
+﻿namespace Mezubo.Domain.ModelServices.Client
 {
     /// <summary>
     /// Clase utilizada para representar un cliente

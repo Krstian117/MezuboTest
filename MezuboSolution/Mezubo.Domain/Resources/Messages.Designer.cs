@@ -61,6 +61,15 @@ namespace Mezubo.Domain.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Esta apuesta ya fue realizada anteriormente.
+        /// </summary>
+        public static string BetExist {
+            get {
+                return ResourceManager.GetString("BetExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cliente.
         /// </summary>
         public static string Client {
@@ -70,11 +79,29 @@ namespace Mezubo.Domain.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se encontro cliente asociado al Id {0}.
+        /// </summary>
+        public static string DontExistClient {
+            get {
+                return ResourceManager.GetString("DontExistClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No se encontro ruleta asociada al Id {0}.
         /// </summary>
         public static string DontExistRoulette {
             get {
                 return ResourceManager.GetString("DontExistRoulette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error, el campo {0}, unicamente permite valores ({1})..
+        /// </summary>
+        public static string ErrorRegularExpression {
+            get {
+                return ResourceManager.GetString("ErrorRegularExpression", resourceCulture);
             }
         }
         

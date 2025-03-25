@@ -14,6 +14,12 @@
         /// <returns></returns>
         public Task<ErrorOr<Success>> ValidateExistClient(string Name);
         /// <summary>
+        /// Metodo encargado de validar si el cliente existe
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public Task<ErrorOr<Success>> ValidateExistClient(int Id);
+        /// <summary>
         /// Metodo encargado de crear clientes
         /// </summary>
         /// <param name="Name"></param>

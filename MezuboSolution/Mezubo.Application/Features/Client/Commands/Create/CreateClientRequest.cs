@@ -2,7 +2,7 @@
 {
     using ErrorOr;
     using MediatR;
-    using Mezubo.Domain.ModelServices;
+    using Mezubo.Domain.ModelServices.Client;
 
     /// <summary>
     /// Clase utilizada para la creación de un cliente
